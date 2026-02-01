@@ -1,0 +1,41 @@
+//Problem:
+//Given a list of integers, write a program to print the numbers that
+//occur only once in the list (unique elements).
+//
+//Example:
+//Input: [4, 5, 6, 4, 7, 5, 9]
+//Output: 6 7 9
+
+
+//import java.util.ArrayList;
+////import java.util.HashMap;
+//import java.util.LinkedHashMap;
+import  java.util.*;
+//
+public class Accenture1 { 
+    public static ArrayList<Integer> uniqueElement(int ar[] ){
+        LinkedHashMap <Integer, Integer> map= new LinkedHashMap<>() ;
+        ArrayList <Integer> list = new ArrayList<>();
+
+        for(int i =0; i< ar.length ; i++){//for frequency of each element
+            map.put( ar[i] , map.getOrDefault( ar[i], 0 ) + 1 );
+
+        }
+
+        for(int key : map.keySet() ){
+            if( map.get(key) == 1){
+                list.add(key);
+            }
+        }
+
+
+
+        return  list;
+    }
+    public static void main(String[] args) {
+        int[] ar = new int[]{1,1,1,1,1};
+
+        System.out.println( uniqueElement (ar ) ) ;
+
+    }
+}
