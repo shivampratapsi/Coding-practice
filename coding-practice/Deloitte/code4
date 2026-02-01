@@ -1,0 +1,78 @@
+import java.util.Scanner;
+/*
+
+Question
+
+Rahul is known for copying in exams from his adjacent students, but he's smart
+about it. Instead of directly copying the words, he changes the positions of letters
+while keeping the letters constant. As the examiner, you need to determine if Rahul
+has copied a certain word from the adjacent student who is giving the same exam.
+You should provide Rahul with the appropriate markings based on your findings.'
+
+Note:
+String is UpperCase
+
+Input Format:
+The first line contains the word of the adjacent student.
+The second line contains Rahul's words.
+Output Format:
+0 if Rahul did not copy.
+1 if Rahul copied.
+
+Constraints:
+1 <= Length of string <= 10^6
+
+Sample Input:
+HELLO
+EHLLO
+
+Sample Output:
+coppied
+ */
+
+
+public class Deloitte4 {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in) ;
+//        make character frequency array
+        while(true) {
+            System.out.println("Enter friend copy ");
+            String copy = sc.next();
+            System.out.println("Enter rahul copy ");
+
+            String rahul = sc.next();
+            if (copy.length() == rahul.length()) {
+                int[] freq = new int[256];
+
+                for (char c : copy.toCharArray()) {//shiv  shih
+                    freq[c]++;
+                }
+                for (char c : rahul.toCharArray()) {
+                    if (freq[c] > 0) {
+                        freq[c]--;
+                    }
+
+                }
+                int count = 0;
+                for (int i = 0; i < freq.length; i++) {
+                    if (freq[i] > 0) {
+                        count++;
+                        break;
+
+                    }
+                }
+
+                if (count > 0) {
+                    System.out.println("NO COPY ");
+                }
+
+                else {
+                    System.out.println("COPIED");
+                }
+            }
+            else System.out.println("Length not equal ");
+
+        }
+    }
+}
+//O(n)+O(n)+O(1)=O(n)
