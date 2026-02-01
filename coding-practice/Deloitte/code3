@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+/*
+Question 1 :
+You are given an array, and you need to choose a contiguous subarray of length 'k'.
+Then, find the minimum value within that subarray and return the maximum of
+those minimum values.
+
+Sample Input:
+
+Length of the subarray: 2
+Size of the array: 6
+Array elements: [3, 1, 4, 6, 2, 5]
+
+Explanation:
+The subarrays of size 2 are: [3, 1], [1, 4], [4, 6], [6, 2], and [2, 5].
+The minimum values within these subarrays are: 1, 1, 4, 2, and 2 respectively.
+e maximum of these minimum values is 4.
+ */
+
+
+public class Deloitte3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+//        int m=sc.nextInt ( ) ;
+        while (true) {
+
+            System.out.println("Enter size " );
+            int n = sc.nextInt();
+            if (n>1) {
+                int[] ar = new int[n];
+                ArrayList<Integer> list = new ArrayList<>();
+
+                for (int i = 0; i < ar.length; i++) {
+                    ar[i] = sc.nextInt();
+                }
+                System.out.println("Enter subarray length :");
+                int sublen= sc.nextInt( );
+//[3, 1, 4, 6, 2, 5]
+
+                int max = Integer.MIN_VALUE;
+
+                for (int i = 0; i <= n - sublen; i++) {
+
+                    int min = Integer.MAX_VALUE; //value of min only reset after subarray loop end
+
+                    for (int j = i; j < i+ sublen; j++) { //sublen = 2
+//[3, 1], [1, 4], [4, 6], [6, 2], and [2, 5].
+                        if (ar[j] < min) {
+                            min = ar[j];
+                        }
+                    }
+                    list.add(min); // 1 1 4 2 2
+
+                }
+//            1st way least efficient if the list is sorted already " O(n logn) "   finding maximum from list
+                /*
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i) > max) {
+                        max = list.get(i);
+                    }
+                }
+                 */
+//                2nd way efficient  " O(n ) "
+
+                max= Collections.max(list);
+                System.out.println( "max element in array is :" + max);
+            }
+            else System.out.println(" size must be greater than 1");
+        }
+    }
+}
+
