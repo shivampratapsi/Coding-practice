@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class validParenthesis {
+    public static void main(String[] args) {
+        // ()(){[][]}  {( )} [[({})] these return true order should be same
+//    [ ) ]    {{ (}}) not valid
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+
+            System.out.println("Enter brackets : ");
+            String inp = sc.nextLine();
+            char[] c = inp.toCharArray(); //( )  (( ))
+            char prev = ' ';
+            char curr = ' ';
+
+//        ArrayList <Character> visit = new ArrayList<>() ;
+            Stack<Character> visit = new Stack<>();
+//( ( ) )
+//(
+            for (char value : c) {
+                curr = value; //
+
+                if (curr == '(' || curr == '{' || curr == '[') {
+
+                    visit.push(curr);
+                } else if (curr == ')' || curr == '}' || curr == ']') {
+
+                    if (visit.isEmpty()) {
+                        visit.push(curr);// if not push that means stack already has opening bracket ( ( ) )
+                        break; // so that stack never be empty
+                    }
+
+                    prev = visit.peek();
+                    if ((prev == '(' && curr == ')') || (prev == '{' && curr == '}') || (prev == '[' && curr == ']')) {
+                        visit.pop();
+                    } else {
+                        break;
+                    }
+                }
+            }
+// if order of parenthesis is right then stack always be empty
+            
+            if (visit.isEmpty())
+                System.out.println(" true ");
+
+            else
+                System.out.println("false");
+
+
+
+        }
+    }
+}
