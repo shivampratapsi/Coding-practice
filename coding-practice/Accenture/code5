@@ -1,0 +1,67 @@
+  /*
+Imagine you're playing a word game with a sentence. Here are the rules:
+Rule #1: Create a "Code" for Each Word
+For every single word in the sentence, you only care about two letters:
+The very first letter.
+The very last letter.
+You take these two letters and stick them together to make a two-letter "code".
+For example:
+For the word "good", the code is "gd".
+For the word "player", the code is "pr".
+For the word "apple", the code is "ae".
+
+Rule #2: Find the Most Popular Code
+After you've made a code for every word in the sentence, your main job is to figure out which code appeared the most times.
+ You're basically looking for the most frequent one.
+
+The Golden Rule (The Tie-Breaker):
+This is the most important part. What if there's a tie? For instance,
+what if the code "ae" appears 3 times and the code "pr" also appears 3 times?
+
+The winner is the code that you saw first in the sentence.
+ */
+
+
+
+
+
+import java.util.*;
+
+public class Accenture7 {
+    public static void main(String[] args) {
+
+        String sentence="shi pra sigh si pa shif shivi pra";
+        LinkedHashMap <String , Integer > map = new LinkedHashMap<>();
+        ArrayList <Integer > list =new ArrayList<>() ;
+        String []words = sentence.split("\\s+" ) ;
+
+        for(String word : words ) {
+            if (word.length() > 1) {
+//            String reqd = String.valueOf(word.charAt(0) + word.charAt(word.length() - 1 ));
+                String reqd = "" + word.charAt(0) + word.charAt(word.length() - 1);
+                map.put(reqd, map.getOrDefault(reqd, 0) + 1);
+
+            }
+        }
+
+            int maxfreq=0; String bestCode= "" ;
+
+        for(Map.Entry<String , Integer> entry : map.entrySet() ){
+
+            String code= entry.getKey();
+            int freq = entry.getValue();
+            if(freq > maxfreq){
+                maxfreq = freq ;
+                bestCode =  code ;
+
+            }
+        }
+
+
+        System.out.println( bestCode);
+
+    }
+}
+
+
+
