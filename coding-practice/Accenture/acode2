@@ -1,0 +1,44 @@
+//Problem Statement
+//You are given a string S containing fruits,
+//where each character represents a different fruit type.
+//
+//Your task is to find and return an integer representing the largest
+//absolute difference between:
+//
+//. the count of the fruit with the maximum odd frequency, and
+//. the count of the fruit with the minimum even frequency.
+
+
+import java.util.HashMap;
+
+public class Accenture2 {
+    static  int diff(String fruit){
+
+        HashMap <Character,Integer> map= new HashMap<>() ;
+        int maxOdd=0 , minEven =Integer.MAX_VALUE ;
+        for(char c : fruit.toCharArray() ) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        for(int f : map.values()){
+            if(f % 2 == 0){
+//aabb
+                minEven= Math.min( f, minEven);
+
+            }
+//avvvddeeeee
+            else{
+
+                maxOdd = Math.max( f, maxOdd);
+            }
+        }
+        if (minEven == Integer.MAX_VALUE) {
+            minEven =0  ; //taaki mineven infinity na ho
+        }
+        return Math.abs(maxOdd - minEven);
+    }
+
+    public static void main(String[] args) {
+        String fruit="acccaadddd" ;
+        System.out.println( "difference is " + diff(fruit) );
+    }
+}
