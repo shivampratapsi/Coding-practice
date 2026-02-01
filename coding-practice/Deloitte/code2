@@ -1,0 +1,54 @@
+import java.util.Scanner;
+/*
+Sara has a box which has N chocolates in it . Sara decides to gift them
+to alice and bob. Bob gets x chocolates and Alice gets remaining y
+chocolates .'
+Bob and Alice starts fighting for chocolates so sara comes up with a
+game.
+If Bob gets x chocolates and Alice got y chocolates and if x>y , then
+bob should put y chocolates into the box and vica versa is also
+applicable.
+This continues till either of them are left with 0 chocolates or they
+both have same number of chocolates.
+
+Sample Input 1:
+4 6
+
+Sample Output 1: return the chocolate in box
+6
+
+Sample Input 2:
+4 7
+
+Sample Output 2: return the chocolate in box
+9
+ */
+
+
+
+public class Deloitte2 {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in ) ;
+
+        while(true) {
+            int x = sc.nextInt(); // 3
+            int y = sc.nextInt(); // 5
+            int diff = Math.abs(x - y);
+            int box = 0;
+
+            while (diff != 0) {
+                if (y > x) {
+                    y -= x; //2 1
+                    box += x;
+                } else {
+                    x -= y;   // 1
+                    box += y;
+                }
+                diff = Math.abs(x - y);
+            }
+
+            System.out.println("chocolate in box is " + box);
+        }
+
+    }
+}
