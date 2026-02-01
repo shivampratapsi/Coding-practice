@@ -1,0 +1,79 @@
+//Encoding Rules
+//For every character, first compute its alphabet position:
+//
+//A=1, B=2, C=3, … Z=26
+//
+//
+//If a character appears only once (no consecutive repetition), output:
+//
+//Character + AlphabetPosition
+//
+//
+//If a character appears consecutively more than once, output:
+//
+//Character + AlphabetPosition + *
+//
+//At the end of the encoded output, append the total number of groups of consecutive characters.
+
+// Examples
+//Example 1
+//Input:
+//ABAZ
+//
+//No repeated characters.
+// Output:
+//A1B2A1Z26
+//
+//Example 2
+//Input:
+//AABBC
+//
+//Groups: AA, BB, C → total groups = 3
+//A repeated → A1*
+//B repeated → B2*
+//C not repeated → C3
+
+//Final Output:
+//A1*B2*C3
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Accenture8 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n"+"enter string in Uppercase : ");
+            String input = sc.next().toUpperCase(); //ABC
+            HashMap<Character, Integer> value = new HashMap<>();
+            ArrayList<Character> visit = new ArrayList<>();
+            char c = 'A';
+
+            for (int i = 1; i <= 26; i++) {
+                value.put(c, i);
+                c++;
+            }
+            String output = "";
+            for (char letter : input.toCharArray()) {
+                if (!visit.contains(letter)) {
+                    visit.clear();
+                    visit.add(letter);
+                    output = output + letter + value.get(letter);
+                } else {
+                    output = output + "*";
+                }
+            }
+            System.out.print(output);
+
+
+//        for(char letter : value.keySet()){
+//            System.out.println(letter + " " + value.get(letter));
+//        }
+
+
+        }
+    }
+}
