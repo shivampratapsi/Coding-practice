@@ -1,0 +1,152 @@
+ /*Poet and Rhymes
+A poet has asked you for assistance in writing poems. He has given
+you a string S and a dictionary D and he asks you to find, from the
+dictionary, a word which rhymes best with S. Words are said to
+rhyme when the last syllables of the words are the same, like "cave"
+and "gave", or "typical" and "critical." The words will be deemed to
+rhyme best if the last few characters of the words match the most.
+
+Your task is to find and return a string value denoting the word which
+rhymes best with S, from the dictionary D. If no such word is found
+return the string "No Word",
+Note:
+        . If all the characters match, it is the same word and not a rhyming word.
+
+        . All the given words are in towercase.
+
+. If multiple rhyming words are found, then choose the word with the least
+index
+
+Input Specification:
+
+input1 : A string value S, representing a single word
+input2 : A string array D, representing the dictionary
+input3 : An integer value representing the length of array D
+
+        Specific Constraints & Rules :
+        Exclusion Rule: If a word in the dictionary is exactly the same as ,
+        it is not a rhyming word and must be ignored.
+        Tie-breaking: if two or more words share the same maximum number of matching trailing characters,
+        you must return the one that appears earliest (lowest index) in the dictionary array
+
+
+//Example 1:
+//
+//input1 : thunder
+//input2 : (puzzle,thunder,powder,blender,under)
+//input3 : 5
+//
+//Output : under
+
+  */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+ public class Accenture4 {
+    /*
+    this is for when length also mention to check from last if it matches to that given length 
+    public  static ArrayList<String> find(String inp1 ,String dict[] , int match){
+      String matchWord = inp1.substring( inp1.length() -match) ;
+
+        ArrayList <String> list= new ArrayList<>( );
+
+        for( String word : dict){
+
+            if(word.length() >= match){
+                String newWord =   word.substring(word. length() -match) ;
+                if(matchWord . equals( newWord) ) {
+                    list.add(newWord);
+                }
+            }
+        }
+
+
+
+        return  list ;
+    }
+
+     */
+    static String rhymingWord(String inp1, String[] dict){
+
+        String ans="";
+        int prevCount =0;
+
+        for( String s : dict) {
+            int inpLength = inp1.length() - 1;
+            int count = 0  ;
+//          "puzzle", "thunder", "powder", "blender", "under"
+//           012345 0123456       // check if word is not same , then it is not rhyming word
+            
+            if (!s.equals(inp1)) { //dont keep same word 
+                
+                for (int i = s.length() - 1; i > 0; i--) {
+
+                    if ( s.substring( i ).equals( inp1.substring( inpLength ) ) ) {
+
+                        count++;
+                        inpLength--;
+                        if (inpLength == 0){
+                            break; }
+
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+            }
+            if ( count > prevCount ){ // now it will keep only first occurence 
+                // if above condition is (count >= prevCount) then the last occurence will apply
+                prevCount =count ;   ans=s ;   }
+        }
+
+
+
+        return ans;
+
+    }
+
+    public static void main(String[] args) {
+        String inp1= "thunder" ;
+        String[] dict =  { "dfhunder","puzzlr","thunder","powder","blender","under", "blhunder" , "osethudfnder" ,"whilw", "der"};
+
+        System.out.println( "Rhyming word is :" + rhymingWord( inp1 , dict) );
+
+
+
+    }
+}
+
+
+
+
+/*
+import java.util.*;
+
+public class LastNCharMatch {
+    public static void main(String[] args) {
+        String input1 = "thunder";
+        List<String> input2 = Arrays.asList("puzzle","thunder","powder","blender","under");
+        int input3 = 5; // number of characters to match
+
+        // Get the last N characters of input1
+        String suffix = input1.substring(input1.length() - input3);
+
+        String result = null;
+        for (String word : input2) {
+            if (word.length() >= input3) {
+                String wordSuffix = word.substring(word.length() - input3);
+                if (wordSuffix.equals(suffix)) {
+                    result = word;
+                    break; // stop at first match
+                }
+            }
+        }
+
+        System.out.println("Output : " + result);
+    }
+}
+
+ */
