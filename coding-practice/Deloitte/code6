@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+Ques 2 :
+Given numbers, a decimal number dNum and binary number
+bNum of the same length. Generate another number res by
+concatenating all the digits of dNum whose corresponding
+binary digit in bNum is 1 in the same order. Print the res as the output.
+
+Constraints :
+1. 1 <= dNum, bNum <= 30
+2. The length of dNum should always equal the length of bNum
+3. bNum should have atleast 1 of it.
+
+Sample Input :
+12345
+10101
+
+Sample Output :
+135
+ */
+
+public class Deloitte6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n Enter binary number");
+            String bin = sc.next();
+            System.out.println("Enter decimal number ");
+            String dec = sc.next();
+                ArrayList<Character> index = new ArrayList<>();
+
+            if (dec.length() == bin.length()) {
+
+
+                for (int i = 0; i < bin.length(); i++) {
+
+                    if (bin.charAt(i) == '1') {
+                        index.add(dec.charAt(i));
+                    }
+                }
+
+                System.out.println("Answer is :");
+                
+                for (char i : index) {
+                    System.out.print(i);
+                }
+            }
+            else System.out.println("\n Enter again !");
+
+        }
+    }
+
+}
