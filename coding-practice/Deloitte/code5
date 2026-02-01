@@ -1,0 +1,55 @@
+import java.util.Scanner;
+/*
+At a university some students are not interested in learning
+structural programming. As a solution their professor has
+assigned them a task to write a program string by removing the
+occurrences of letters that are present in the word 'STRUCTURAL' from the input string.
+
+Constraint :
+1. The input string S must contain All upper case letters.
+2. 2 < length of the string
+
+Input format :
+The first line of input contains a string S.
+
+Output format :
+The output string must be printed by removing the letters from
+STRUCTURAL in the given string.
+
+Sample Input :
+LOVA
+
+Sample Output :
+OV
+ */
+
+//append that character into string
+
+public class Deloitte5 {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in ) ;
+
+        while( true ) {
+            System.out.println("Enter given string"); //shiva
+            String given = sc.nextLine();
+            System.out.println("Enter input string");//abcd
+            String input = sc.nextLine();
+
+            int[] freq = new int[256];
+
+            for (char c : given.toCharArray()) {
+                
+                freq[c]++;
+
+                }
+            String ans = "";
+            for (char c : input.toCharArray()) {
+                if (freq[c] == 0 && freq[ c ]!=' ') {  // to not compare space
+                    ans = ans + c;
+                }
+            }
+            System.out.println("answer is :" + ans);
+
+        }
+    }
+}
